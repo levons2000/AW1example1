@@ -11,28 +11,27 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
-    private EditText editText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button = findViewById(R.id.searchbutton);
-        editText = findViewById(R.id.urltext);
+        Button button = findViewById(R.id.searchbutton);
+        final EditText editText = findViewById(R.id.urltext);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String text = editText.getText().toString();
                 try {
-                    if (editText.getText().toString().startsWith("http://")) {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(editText.getText().toString()));
+                    if (text.startsWith("http://")) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(text));
                         startActivity(intent);
                     } else {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(("http://" + editText.getText().toString())));
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(("http://" + text)));
                         startActivity(intent);
                     }
                 } catch (ActivityNotFoundException e) {
-                    Toast.makeText(MainActivity.this, "Browsera petq unikum jan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.exceptiontoast, Toast.LENGTH_SHORT).show();
                 }
             }
         });

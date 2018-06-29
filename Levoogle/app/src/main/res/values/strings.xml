@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Levoogle</string>
     <string name="go">Go</string>
+    <string name="exceptiontoast">Browsera petq unikum jan</string>
 </resources>
